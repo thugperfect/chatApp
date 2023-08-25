@@ -16,12 +16,19 @@ app.get('/',(req,res)=>{
 })
 
 io.on('connection',socket=>{
-    console.log("usr connected");
+    console.log("Online");
     console.log(socket.id);
+
+    socket.on('disconnect',()=>{
+        console.log("Ofline");
+    })
+    socket.on("message",(msg)=>{
+        console.log("client :"+msg);
+    })
+    
 })
-io.on("test",(msg)=>{
-    console.log("client :"+msg);
-})
+
+
 http.listen(port,()=>{
     console.log(`SERVER@${port}`);
 })

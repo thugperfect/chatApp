@@ -1,9 +1,10 @@
 const socket = io();
 const chat = document.getElementById('chat')
-
-socket.on('connection',soc=>{
-    console.log("usr connected");
-    console.log(soc.id);
+const btn =document.getElementById('btn')
+socket.on('connect',()=>{
+   
+    console.log(socket.id); 
 })
-
-socket.emit("test","hello FU")
+btn.addEventListener('click',()=>{
+    socket.emit("message","FU from client")
+})
