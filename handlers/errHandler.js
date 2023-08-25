@@ -4,6 +4,8 @@ exports.catchError = (prop) =>{
             res.status(400).json({
                 msg:err
             })
+        }else{
+           next(err)
         }
     }
 }

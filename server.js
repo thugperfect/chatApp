@@ -15,6 +15,7 @@ mongoose.connect(database,{
 })
 
 mongoose.connection.on('error',(err)=>{
+    console.log("MongoDB ==> Disconnected");
     console.log(`mongoose error : ${err}`);
 })
 mongoose.connection.once('open',()=>{

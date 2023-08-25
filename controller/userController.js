@@ -23,6 +23,13 @@ const userController = {
         
             const user = new User({name,username,email,password:hash_password})
             await user.save()
+
+            res.json({
+                status:"Success",
+                user:{
+                    ...user._doc
+                }
+            })
         }
         catch (err){
             return res.status(500).json({msg:err.message})
@@ -31,6 +38,8 @@ const userController = {
 
 },
 login : async (req,res)=>{
-    
+    const {email,password} = req.body
+    const user = User.findOne({email,password})
+    if(!user) res.status(400).json({msg:"Incorrect Email or Password"})
 }
 }
