@@ -37,6 +37,7 @@ const userController = {
 
 
 },
+
 login : async (req,res)=>{
     const {email,password} = req.body
     const user = User.findOne({email,password})
