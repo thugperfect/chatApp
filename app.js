@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:false}))
 
 app.use(express.static("./res"))
 
-app.use(require('./routes/user'))
+app.use('/',require('./routes/user'))
 
 app.get('/new',(req,res)=>{
     res.send("new")
