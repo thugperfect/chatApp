@@ -24,7 +24,10 @@ io.on('connection',socket=>{
     })
     socket.on("message",(msg)=>{
         console.log("client :"+msg);
+        
     })
+    socket.emit('server',"Hi mf from server")
+
     
 })
 
