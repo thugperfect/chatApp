@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {catchError} = require('../handlers/errHandler')
-const userController = require('../controller/userController')
+const {login,register} = require('../controller/userController')
 
-router.post('/login',catchError(userController.login))
+router.post('/login',login)
 
-router.post('/register',catchError(userController.register))
+router.post('/register',register)
