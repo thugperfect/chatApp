@@ -11,6 +11,8 @@ btn.addEventListener('click',()=>{
     const inpValue = inpChat.value 
     socket.emit("message",inpValue)
 })
-socket.on('server',(msg)=>{
-    chat.innerText=msg
-})
+
+const listen = (eventName,...args)=>{
+    console.log(eventName,args);
+}
+socket.onAny(listen)

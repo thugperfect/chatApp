@@ -27,6 +27,8 @@ io.on('connection',socket=>{
         
     })
     socket.emit('server',"Hi mf from server")
+    socket.emit('server1',"Hi mf from server1")
+    socket.emit('server12',"Hi mf from server12")
 
     
 })
