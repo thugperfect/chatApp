@@ -6,6 +6,7 @@ const userController = {
     register:async (req,res)=>{
         try{
             const {name,username,email,password} = req.body
+            console.log(req.body);
 
             const newUserName = username
             const user_name = await User.findOne({username:newUserName})
@@ -44,3 +45,5 @@ login : async (req,res)=>{
     if(!user) res.status(400).json({msg:"Incorrect Email or Password"})
 }
 }
+
+module.exports = userController
