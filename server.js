@@ -5,10 +5,14 @@ const app = express()
 
 const http = require("http")
 const server = http.Server(app)
-
+const port = process.env.PORT || 8001 
 const socket = require("socket.io").server
 
-const port = process.env.PORT || 8001
+socket.on("connection",(socket)=>{
+
+})
+
+
 
 app.get('/',(req,res)=>{
     res.json({status:"success",msg:""})
