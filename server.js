@@ -9,7 +9,10 @@ const port = process.env.PORT || 8001
 const mongoose = require('mongoose')
 const database = process.env.MONGO_URL
 
-mongoose.connect(database)
+mongoose.connect(database,{
+    useUnifiedTopology:true,
+    useNewUrlParser:true
+})
 
 mongoose.connection.on('error',(err)=>{
     console.log(`mongoose error : ${err}`);
@@ -17,6 +20,13 @@ mongoose.connection.on('error',(err)=>{
 mongoose.connection.once('open',()=>{
     console.log("MongoDB ==> Connected");
 })
+
+
+require('./models/user')
+require('./models/chatApp')
+require('./models/message')
+
+
 
 const io = require("socket.io")(http)
 
