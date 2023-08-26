@@ -47,13 +47,14 @@ login : async (req,res)=>{
     if(!user) return res.status(400).json({msg:"Incorrect Username Or Password"})
     const isMatch = await bcrypt.compare(password,user.password)
     if(!isMatch) return res.status(400).json({msg:"Incorrect Username or Password"})
-    const token = jwt.sign({id:user.id},process.env.ACCESS_TOKEN_SECRET)
+    const token =await jwt.sign({id:user._id},process.env.ACCESS_TOKEN_SECRET)
     
     res.json({
         msg:"user Logged in successfully",
+        
         user:{
         ...user._doc
-    }})
+    },token})
    
 }
 }

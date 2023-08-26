@@ -7,4 +7,4 @@ const chatAppSchema = new mongoose.Schema({
     },
     
 })
-module.exports = mongoose.model('chatApp',chatAppSchema)
+module.exports = mongoose.model('chatapp',chatAppSchema)

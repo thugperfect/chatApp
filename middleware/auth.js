@@ -4,10 +4,13 @@ const jwt = require('jwt-then')
 module.exports = async (req,res,next)=>{
   try{  
     if(!req.headers.authorization) return res.status(400).json({msg:"404 forbidden"})
-    const token = req.headers.token.authorization.split(" ")[1]
+
+    const token = req.headers.authorization.split(" ")[1]
     const payload =await jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
+    req.payload = payload
     next()
-}catch (err){
-    res.status(400).json({msg:err})
+}
+catch (err){
+    res.status(400).json({msg:"err"})
 }
 }

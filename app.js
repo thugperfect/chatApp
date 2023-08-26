@@ -11,6 +11,6 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.static("./res"))
 
 app.use('/',require('./routes/user'))
-
+app.use('/',require('./routes/chatApp'))
 
 module.exports = app
