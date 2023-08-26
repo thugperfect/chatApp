@@ -8,8 +8,6 @@ app.use(express.json())
 
 app.use(express.urlencoded({extended:false}))
 
-app.use(express.static("./res"))
-
 app.use('/',require('./routes/user'))
 app.use('/',require('./routes/chatApp'))
 
