@@ -1,6 +1,8 @@
+require('dotenv').config()
 const mongoose = require("mongoose")
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
+const jwt = require('jwt-then')
 const userController = {
     
     register:async (req,res)=>{
@@ -26,7 +28,7 @@ const userController = {
             await user.save()
 
             res.json({
-                status:"Success",
+                msg:"Register Success",
                 user:{
                     ...user._doc
                 }
@@ -41,8 +43,18 @@ const userController = {
 
 login : async (req,res)=>{
     const {email,password} = req.body
-    const user = User.findOne({email,password})
-    if(!user) res.status(400).json({msg:"Incorrect Email or Password"})
+    const user = await User.findOne({email})
+    if(!user) return res.status(400).json({msg:"Incorrect Username Or Password"})
+    const isMatch = await bcrypt.compare(password,user.password)
+    if(!isMatch) return res.status(400).json({msg:"Incorrect Username or Password"})
+    const token = jwt.sign({id:user.id},process.env.ACCESS_TOKEN_SECRET)
+    
+    res.json({
+        msg:"user Logged in successfully",
+        user:{
+        ...user._doc
+    }})
+   
 }
 }
 
