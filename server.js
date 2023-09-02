@@ -5,7 +5,7 @@ const app = require('./app')
 const http = require("http").createServer(app)
 
 const port = process.env.PORT || 8001 
-
+const jwt =  require("jwt-then")
 const mongoose = require('mongoose')
 const database = process.env.MONGO_URL
 
@@ -31,19 +31,22 @@ require('./models/message')
 
 const io = require("socket.io")(http)
 
-io.on('connection',socket=>{
-    console.log("Online");
-    console.log(socket.id);
+io.use(async (socket,next) =>{
+    try{
+        const token = socket.handshake.query.token
+        const payload = await jwt.verify(token.process.env.ACCESS_TOKEN_SECRET)
+        socket.userId = payload.id
 
+    }catch (err){
+
+    }
+})
+
+io.on('connection',(socket)=>{
+    console.log("connected"+socket.userId)
     socket.on('disconnect',()=>{
-        console.log("Ofline");
+        console.log("disconnected"+socket.userId);
     })
-    socket.on("message",(msg)=>{
-        console.log("client :"+msg);
-        
-    })
-    socket.emit('server',"Hi mf from server")
-    
 })
 
 http.listen(port,()=>{

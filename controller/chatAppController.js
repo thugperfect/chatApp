@@ -9,9 +9,10 @@ const chatAppController ={
         const chatapp = new Chatapp({name})
     await chatapp.save()
     res.json({msg:"chat added..."})
-
-        
-
+    },
+    getAllChat: async (req,res) =>{
+        const chat = await Chatapp.find({})
+        res.json({chat})
     }
 
 }

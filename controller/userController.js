@@ -30,6 +30,7 @@ const userController = {
 
             res.json({
                 msg:"Register Success",
+                status:true,
                 user:{
                     ...user._doc
                 }
@@ -53,7 +54,7 @@ login : async (req,res)=>{
     
     res.json({
         msg:"user Logged in successfully",
-        
+        status:true,
         user:{
         ...user._doc
     },token})

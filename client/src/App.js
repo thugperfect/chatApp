@@ -11,12 +11,13 @@ function App() {
   return (
    <Router>
     <Routes>
-       <Route path='/' Component={Login}></Route>
+       <Route path='/' Component={Index}></Route>
       <Route path='/login' Component={Login}></Route>
       <Route path='/register' Component={Register}></Route>
-      <Route path='/chat' Component={Chat}></Route>
-      <Route path='/index' Component={Index}></Route>
       <Route path='/dashboard' Component={Dashboard}></Route>
+      <Route path='/chat/:id' Component={Chat}></Route>
+      
+
 
 
     </Routes>

@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import React from "react"
 import { useState } from "react"
-const Register = ()=>{
+const Register = (props)=>{
+    const navigate = useNavigate()
     const [result,setResult] = useState("")
 
     const nameRef = React.createRef()
@@ -21,6 +22,10 @@ const Register = ()=>{
         }).then(res=>{
             if(res)
             setResult(res.data.msg)
+           
+            if(res.data.status === true){
+                navigate('/login')
+            }
         }).catch(err=>{
          console.log(err);
         })
@@ -29,9 +34,11 @@ console.log(result);
     return(
         <div className="text-gray-400 w-full  min-h-[100vh] flex flex-col justify-center items-center">
             {
+                (result)?
                 (result === "Register Success")?
-                <div className="bg-green-500 w-[400px] mb-2 flex justify-center items-center text-white rounded-lg">{result}</div>
-                : <div className="bg-red-500 w-[400px] mb-2 flex justify-center items-center text-white rounded-lg">{result}</div>
+                <div className="bg-green-500 w-[400px] p-2 mb-2 flex justify-center items-center text-white rounded-lg">{result}</div>
+                : <div className="bg-red-500 w-[400px] p-2 mb-2 flex justify-center items-center text-white rounded-lg">{result}</div>
+                :""
             } 
            
         <div className="container w-[400px] h-[500px] outline outline-1 outline-slate-800 bg-black rounded-lg flex flex-col justify-evenly">
@@ -43,7 +50,7 @@ console.log(result);
                 <input className=" w-[250px] rounded-md outline-none px-5 h-[30px]" ref={passwdRef} type="text" name="password" id="password" placeholder="Enter your Password..."/>
                 <button onClick={registerUser} className="bg-slate-800 w-[250px] rounded-md px-5 h-[30px]" type="submit" >submit</button>
             </div>
-            <div className="w-full  flex justify-center" >Already have a Account &nbsp;<div className="text-white"><Link to="/login">Login</Link></div></div>
+            <div className="w-full  flex justify-center" >Already have a Account ?&nbsp;<div className="text-white"><Link to="/login">Login</Link></div></div>
         </div>
     </div>
     )
