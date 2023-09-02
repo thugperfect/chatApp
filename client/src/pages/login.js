@@ -10,7 +10,7 @@ const Login = ()=>{
                     <button className="bg-slate-800 w-[250px] rounded-md px-5 h-[30px]" type="submit" >submit</button>
                 </div>
                 <div className="w-full  flex justify-center" >Don't have a Account &nbsp;
-                <a className="text-white"><Link to="/register">Signup</Link></a></div>
+                <div className="text-white"><Link to="/register">Signup</Link></div></div>
             </div>
         </div>
     )
