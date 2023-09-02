@@ -22,8 +22,7 @@ const Register = ()=>{
             if(res)
             setResult(res.data.msg)
         }).catch(err=>{
-            if(err.res)
-            setResult(err.res.data.msg)
+         console.log(err);
         })
     }
 console.log(result);
