@@ -46,9 +46,9 @@ const userController = {
 login : async (req,res)=>{
     const {email,password} = req.body
     const user = await User.findOne({email})
-    if(!user) return res.status(400).json({msg:"Incorrect Username Or Password"})
+    if(!user) return res.json({msg:"Incorrect Username Or Password"})
     const isMatch = await bcrypt.compare(password,user.password)
-    if(!isMatch) return res.status(400).json({msg:"Incorrect Username or Password"})
+    if(!isMatch) return res.json({msg:"Incorrect Username or Password"})
     const token =await jwt.sign({id:user._id},process.env.ACCESS_TOKEN_SECRET)
     
     res.json({
