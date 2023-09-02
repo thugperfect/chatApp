@@ -34,7 +34,8 @@ const io = require("socket.io")(http)
 io.use(async (socket,next) =>{
     try{
         const token = socket.handshake.query.token
-        const payload = await jwt.verify(token.process.env.ACCESS_TOKEN_SECRET)
+        const payload = await jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
+        console.log(payload);
         socket.userId = payload.id
 
     }catch (err){
