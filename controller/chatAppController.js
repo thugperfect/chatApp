@@ -14,6 +14,7 @@ const chatAppController ={
         const chat = await Chatapp.find({})
         res.json({chat})
     }
+    
 
 }
 module.exports = chatAppController
